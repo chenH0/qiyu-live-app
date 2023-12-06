@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: qiyu-live-api
+dubbo:
+  application:
+    name: qiyu-live-api
+    qos-enable: false
+  registry:
+    address: nacos://qiyu.nacos.com:8848?namespace=qiyu-live-test&&username=qiyu&&password=qiyu
+
+server:
+  servlet:
+    context-path: /live/api
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 500 #最大工作线程数量
+    min-spare-threads: 20 #最小工作线程数量
+    max-connections: 500 #一瞬间最大支持的并发的连接数
