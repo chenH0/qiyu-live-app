@@ -8,6 +8,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import org.qiyu.live.im.core.server.common.ImMsgDecoder;
 import org.qiyu.live.im.core.server.common.ImMsgEncoder;
+import org.qiyu.live.im.core.server.handler.ImServerCoreHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,6 +42,7 @@ public class NettyImServerApplication {
                 channel.pipeline().addLast(new ImMsgDecoder());
                 channel.pipeline().addLast(new ImMsgEncoder());
                 // 设置这个netty处理handler
+                channel.pipeline().addLast(new ImServerCoreHandler());
             }
         });
         // 基于JVM的钩子函数去实现优雅的关闭
