@@ -1,6 +1,7 @@
 package org.qiyu.live.im.core.server.handler.impl;
 
 import io.netty.channel.ChannelHandlerContext;
+import org.qiyu.live.im.core.server.common.ImMsg;
 import org.qiyu.live.im.core.server.handler.SimpleHandler;
 
 /**
@@ -11,7 +12,8 @@ import org.qiyu.live.im.core.server.handler.SimpleHandler;
 
 public class LoginMsgHandler implements SimpleHandler {
     @Override
-    public void handler(ChannelHandlerContext ctx, Object msg) {
-
+    public void handler(ChannelHandlerContext ctx, ImMsg msg) {
+        System.out.println("login:"+msg);
+        ctx.writeAndFlush(msg);
     }
 }

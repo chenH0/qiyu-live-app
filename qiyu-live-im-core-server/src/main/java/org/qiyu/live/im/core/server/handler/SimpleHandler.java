@@ -1,6 +1,7 @@
 package org.qiyu.live.im.core.server.handler;
 
 import io.netty.channel.ChannelHandlerContext;
+import org.qiyu.live.im.core.server.common.ImMsg;
 
 /**
  * @author chenH
@@ -9,5 +10,5 @@ import io.netty.channel.ChannelHandlerContext;
  */
 
 public interface SimpleHandler {
-    void handler(ChannelHandlerContext ctx, Object msg);
+    void handler(ChannelHandlerContext ctx, ImMsg msg);
 }

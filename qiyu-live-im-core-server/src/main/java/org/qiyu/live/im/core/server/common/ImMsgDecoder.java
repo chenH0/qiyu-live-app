@@ -19,7 +19,7 @@ public class ImMsgDecoder extends ByteToMessageDecoder {
     protected void decode(ChannelHandlerContext ctx, ByteBuf byteBuf, List<Object> out) throws Exception {
         // bytebuf内容的基本校验,长度校验,magic值校验
         if(byteBuf.readableBytes()>=BASE_LEN){
-            if(!(byteBuf.readShort()!= ImConstants.DEFAULT_MAGIC)){
+            if(byteBuf.readShort()!= ImConstants.DEFAULT_MAGIC){
                 ctx.close();
                 return;
             }
@@ -36,6 +36,7 @@ public class ImMsgDecoder extends ByteToMessageDecoder {
             ImMsg inMsg = new ImMsg();
             inMsg.setCode(code);
             inMsg.setLen(len);
+            inMsg.setMagic(ImConstants.DEFAULT_MAGIC);
             inMsg.setBody(body);
             out.add(inMsg);
         }
