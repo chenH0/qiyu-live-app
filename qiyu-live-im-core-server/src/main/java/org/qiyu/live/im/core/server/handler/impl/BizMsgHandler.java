@@ -3,6 +3,7 @@ package org.qiyu.live.im.core.server.handler.impl;
 import io.netty.channel.ChannelHandlerContext;
 import org.qiyu.live.im.core.server.common.ImMsg;
 import org.qiyu.live.im.core.server.handler.SimpleHandler;
+import org.springframework.stereotype.Component;
 
 /**
  * @author chenH

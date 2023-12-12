@@ -1,4 +1,4 @@
-package org.qiyu.live.im.core.server;
+package org.qiyu.live.im.core.server.starter;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
@@ -11,21 +11,25 @@ import org.qiyu.live.im.core.server.common.ImMsgEncoder;
 import org.qiyu.live.im.core.server.handler.ImServerCoreHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 
-public class NettyImServerApplication {
-    private static final Logger LOG = LoggerFactory.getLogger(NettyImServerApplication.class);
+/**
+ * @author chenH
+ * @desc
+ * @date 2023/12/9/ 15:02
+ */
+
+@Configuration
+public class NettyImImServerStarter implements InitializingBean {
+    private static final Logger LOG = LoggerFactory.getLogger(NettyImImServerStarter.class);
     // 指定监听端口
+    @Value("${qiyu.im.port}")
     private int port;
-    public int getPort(){
-        return port;
-    }
-    public void setPort(int port){
-        this.port = port;
-    }
 
     // 基于netty去启动一个java进程，绑定监听的端口
-    public void startApplication(int port) throws InterruptedException {
-        setPort(port);
+    public void startApplication() throws InterruptedException {
         // 处理accept事件
         NioEventLoopGroup bossGroup = new NioEventLoopGroup();
         // 处理read/write事件
@@ -52,13 +56,24 @@ public class NettyImServerApplication {
         }));
 
         ChannelFuture channelFuture = bootstrap.bind(port).sync();
-        LOG.info("服务器启动成功"+getPort());
+        LOG.info("服务器启动成功"+port);
         // 这里会阻塞主线程，实现服务长期开启
         channelFuture.channel().closeFuture().sync();
     }
 
-    public static void main(String[] args) throws InterruptedException {
-        NettyImServerApplication nettyImServerApplication = new NettyImServerApplication();
-        nettyImServerApplication.startApplication(9090);
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        Thread nettySeverThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    startApplication();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        nettySeverThread.setName("qiyu-live-im-server");
+        nettySeverThread.start();
     }
 }

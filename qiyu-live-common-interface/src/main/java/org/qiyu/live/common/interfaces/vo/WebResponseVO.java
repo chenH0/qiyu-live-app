@@ -3,7 +3,7 @@ package org.qiyu.live.common.interfaces.vo;
 /**
  * 统一返回给前端的VO对象
  *
- * @Author idea
+ * @Author sfx
  * @Date: Created in 10:45 2023/6/15
  * @Description
  */
@@ -50,6 +50,13 @@ public class WebResponseVO {
         WebResponseVO webResponseVO = new WebResponseVO();
         webResponseVO.setCode(501);
         webResponseVO.setMsg(msg);
+        return webResponseVO;
+    }
+
+    public static WebResponseVO bizError(String errorMsg,int errorCode) {
+        WebResponseVO webResponseVO = new WebResponseVO();
+        webResponseVO.setCode(errorCode);
+        webResponseVO.setMsg(errorMsg);
         return webResponseVO;
     }
 

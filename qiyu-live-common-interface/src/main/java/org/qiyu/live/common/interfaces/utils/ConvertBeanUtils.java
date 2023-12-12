@@ -6,11 +6,7 @@ import org.springframework.beans.BeanUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @Author idea
- * @Date: Created in 16:06 2023/5/7
- * @Description
- */
+
 public class ConvertBeanUtils {
 
     /**
@@ -30,7 +26,6 @@ public class ConvertBeanUtils {
         return t;
     }
 
-
     /**
      * 将List对象转换成目标对象，注意实现是ArrayList
      *
@@ -43,7 +38,7 @@ public class ConvertBeanUtils {
         if (sourceList == null) {
             return null;
         }
-        List targetList = new ArrayList((int) (sourceList.size() / 0.75) + 1);
+        List targetList = new ArrayList((int)(sourceList.size()/0.75) + 1);
         for (K source : sourceList) {
             targetList.add(convert(source, targetClass));
         }
