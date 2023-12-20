@@ -1,14 +1,11 @@
 package org.qiyu.live.im.core.server.handler.impl;
 
 import io.netty.channel.ChannelHandlerContext;
-import jakarta.annotation.Resource;
-import org.apache.catalina.core.ApplicationContext;
 import org.qiyu.live.im.core.server.common.ImMsg;
 import org.qiyu.live.im.core.server.handler.ImHandlerFactory;
 import org.qiyu.live.im.core.server.handler.SimpleHandler;
-import org.qiyu.live.im.interfaces.ImMsgCodeEnum;
+import org.qiyu.live.im.constants.ImMsgCodeEnum;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;

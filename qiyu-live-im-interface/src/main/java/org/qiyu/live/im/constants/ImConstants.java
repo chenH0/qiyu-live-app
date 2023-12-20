@@ -1,4 +1,4 @@
-package org.qiyu.live.im.interfaces;
+package org.qiyu.live.im.constants;
 
 public class ImConstants {
     /**

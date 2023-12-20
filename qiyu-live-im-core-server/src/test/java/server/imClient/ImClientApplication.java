@@ -11,7 +11,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import org.qiyu.live.im.core.server.common.ImMsg;
 import org.qiyu.live.im.core.server.common.ImMsgDecoder;
 import org.qiyu.live.im.core.server.common.ImMsgEncoder;
-import org.qiyu.live.im.interfaces.ImMsgCodeEnum;
+import org.qiyu.live.im.constants.ImMsgCodeEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
